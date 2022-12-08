@@ -1,0 +1,12 @@
+#!/bin/bash
+
+rm -rf build
+mkdir build
+
+# gcc -o a.out *.c glad.o -Wall -Wextra -pedantic -std=c2x -O2 -lglfw -lm
+clang -static -c -o engine.o *.c -Wall -Wextra -pedantic -std=c2x -O2
+(cd game && cargo build)
+cp glad.o build/
+mv engine.o game/target/debug/libgame.a build/
+clang build/*.o build/*.a -lglfw -lm
+./a.out

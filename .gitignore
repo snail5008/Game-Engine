@@ -1,0 +1,7 @@
+game/target
+a.out
+build
+.vscode
+Cargo.lock
+glad.o
+
