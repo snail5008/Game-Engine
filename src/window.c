@@ -40,8 +40,8 @@ void window_update(struct Window *win, struct Camera *cam) {
     win->height_old = win->height;
 }
 
-void window_swapbuffers(struct Window win) {
-    glfwSwapBuffers(win.window);
+void window_swapbuffers(struct Window *win) {
+    glfwSwapBuffers(win->window);
     glfwPollEvents();
 }
 

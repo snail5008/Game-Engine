@@ -19,7 +19,7 @@ build/mesh.o: src/mesh.c src/mesh.h
 build/utils.o: src/utils.c src/utils.h
 	$(CC) $(CARGS) $@ $<
 
-build/libgame.a:
+build/libgame.a: game/src/*.rs
 	(cd game && cargo build --release && mv target/release/libgame.a ../build/libgame.a)
 
 a.out: $(OBJS)

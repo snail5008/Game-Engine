@@ -19,7 +19,7 @@ struct Window window_create();
 
 void window_update(struct Window *win, struct Camera *cam);
 
-void window_swapbuffers(struct Window win);
+void window_swapbuffers(struct Window *win);
 
 void window_clear(int r, int g, int b);
 

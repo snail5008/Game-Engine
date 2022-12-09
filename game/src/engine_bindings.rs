@@ -52,7 +52,7 @@ pub mod engine {
 
             pub fn window_create() -> Window;
             pub fn window_update(win: *mut Window, cam: *mut Camera);
-            pub fn window_swapbuffers(window: Window);
+            pub fn window_swapbuffers(window: *const Window);
             pub fn window_clear(r: i32, g: i32, b: i32);
             pub fn window_should_close(window: Window) -> i32;
             pub fn window_keypressed(window: Window, key: i32) -> bool;
@@ -133,7 +133,7 @@ pub mod engine {
         pub fn update(self: &mut Self, cam: *mut Camera) {
             unsafe { raw_bindings::window_update(self, cam); }
         }
-        pub fn swapbuffers(self: Self) {
+        pub fn swapbuffers(self: &Self) {
             unsafe { raw_bindings::window_swapbuffers(self); }
         }
         pub fn clear(r: i32, g: i32, b: i32) {
