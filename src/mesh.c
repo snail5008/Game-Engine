@@ -1,4 +1,5 @@
 #include "mesh.h"
+#include <cglm/cglm.h>
 
 uint32_t program_create(const char *vertex_source, const char *fragment_source) {
     int success;
@@ -73,19 +74,58 @@ void mesh_draw(struct Mesh mesh, uint32_t vertcount) {
 }
 
 void mesh_matrices_init(struct Mesh *mesh) {
-   glm_mat4_identity(mesh->model_rotation);
-   glm_mat4_identity(mesh->model_translation);
-   glm_mat4_identity(mesh->model_scale);
+   mat4_identity(mesh->model_rotation);
+   mat4_identity(mesh->model_translation);
+   mat4_identity(mesh->model_scale);
 }
 
 void mesh_matrices_update(struct Mesh *mesh, struct Camera cam) {
 
-    mat4 resulting_matrix;
+    Matrix4 resulting_matrix;
+
+    Matrix4 A = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12},
+        {13, 14, 15, 16}
+    };
+    Matrix4 B = {
+        {17, 18, 19, 20},
+        {21, 22, 23, 24},
+        {25, 26, 27, 28},
+        {29, 30, 31, 32}
+    };
+    // Matrix4 C = {
+    //     {1, 2, 3, 4},
+    //     {5, 6, 7, 8},
+    //     {9, 10, 11, 12},
+    //     {13, 14, 15, 16}
+    // };
+
+    // mat4_transpose(A, A);
+    // mat4_transpose(B, B);
+
+    // glm_mul(A, B, resulting_matrix);
+
+    // mat4_mul(mesh->model_translation, mesh->model_rotation, resulting_matrix);
+    // mat4_mul(resulting_matrix, mesh->model_scale, resulting_matrix);
+    // mat4_mul(cam.view, resulting_matrix, resulting_matrix);
+    // mat4_mul(cam.proj, resulting_matrix, resulting_matrix);
 
     glm_mul(mesh->model_translation, mesh->model_rotation, resulting_matrix);
     glm_mul(resulting_matrix, mesh->model_scale, resulting_matrix);
     glm_mul(cam.view, resulting_matrix, resulting_matrix);
     glm_mul(cam.proj, resulting_matrix, resulting_matrix);
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++)
+            printf("%f ", resulting_matrix[i][j]);
+        puts("");
+    }
+
+
+    puts("");
+    //exit(0);
 
     glUniformMatrix4fv(
         glGetUniformLocation(mesh->program, "trans"),

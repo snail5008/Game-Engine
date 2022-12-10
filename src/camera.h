@@ -1,16 +1,16 @@
 #pragma once
-#include <cglm/cglm.h>
+#include "maths.h"
 
 struct Camera {
-    mat4 view;
-    mat4 proj;
+    Matrix4 view;
+    Matrix4 proj;
 
-    vec3 position;
-    vec3 direction;
+    Vector3 position;
+    Vector3 direction;
 };
 
 struct Camera camera_create(float fov, float w, float h);
 
 void camera_update(struct Camera* cam);
 
-void camera_translate(struct Camera* cam, vec3 translate_to);
+void camera_translate(struct Camera* cam, Vector3 translate_to);

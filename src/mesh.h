@@ -11,9 +11,9 @@ struct Mesh {
     uint32_t vbo;
     uint32_t program;
 
-    mat4 model_translation;
-    mat4 model_scale;
-    mat4 model_rotation;
+    Matrix4 model_translation;
+    Matrix4 model_scale;
+    Matrix4 model_rotation;
 };
 
 uint32_t program_create(const char *vertex_source, const char *fragment_source);

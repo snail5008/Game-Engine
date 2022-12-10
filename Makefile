@@ -32,3 +32,7 @@ build: a.out
 .PHONY: run
 run: a.out
 	./$<
+
+.PHONY: clean
+clean:
+	rm -rf build/

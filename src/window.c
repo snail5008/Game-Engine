@@ -1,6 +1,8 @@
 #include <stdbool.h>
 #include "window.h"
 
+#include <cglm/cglm.h>
+
 int g_old_time = 0;
 int g_frames = 0;
 
